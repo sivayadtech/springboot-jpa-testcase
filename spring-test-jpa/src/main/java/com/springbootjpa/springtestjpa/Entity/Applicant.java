@@ -2,13 +2,10 @@ package com.springbootjpa.springtestjpa.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-@JsonPropertyOrder({"id","name","email","phone","status"})
+@JsonPropertyOrder({"id","name","email","phone","status","resume"})
 public class Applicant {
 
     @Id
@@ -18,6 +15,16 @@ public class Applicant {
     private String email;
     private String phone;
     private String status;
+    @OneToOne(mappedBy = "applicant", cascade=CascadeType.ALL)
+    private Resume resume;
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
 
     public Long getId() {
         return id;

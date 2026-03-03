@@ -2,6 +2,7 @@ package com.springbootjpa.springtestjpa.services;
 
 
 import com.springbootjpa.springtestjpa.Entity.Applicant;
+import com.springbootjpa.springtestjpa.Entity.Resume;
 import com.springbootjpa.springtestjpa.repository.ApplicantPagingAndSorting;
 import com.springbootjpa.springtestjpa.repository.ApplicantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class ApplicantService {
     }
 
     public Applicant saveApplicant(Applicant applicant) {
+        Resume resume=applicant.getResume();
+        if (resume != null) {
+            resume.setApplicant(applicant);
+        }
         return applicantRepository.save(applicant);
     }
 
