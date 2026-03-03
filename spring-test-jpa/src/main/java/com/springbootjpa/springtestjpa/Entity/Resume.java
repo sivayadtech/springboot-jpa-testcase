@@ -1,5 +1,6 @@
 package com.springbootjpa.springtestjpa.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 
@@ -12,6 +13,7 @@ public class Resume {
     private String content;
     @OneToOne
     @JoinColumn(name = "applicantId", nullable = false)
+    @JsonIgnore
     private Applicant applicant;
 
     public Long getId() {
